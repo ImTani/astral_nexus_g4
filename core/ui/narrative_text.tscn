@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg4eght21uv86"]
+
+[ext_resource type="Script" uid="uid://b00inbb30seo4" path="res://core/ui/narrative_text.gd" id="1_gbghc"]
+
+[node name="NarrativeText" type="Control" node_paths=PackedStringArray("text_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gbghc")
+text_label = NodePath("TextLabel")
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true

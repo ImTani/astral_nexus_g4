@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm4ja1atyswry"]
+
+[ext_resource type="Script" uid="uid://najopdgj0us7" path="res://core/ui/choice_button.gd" id="1_t1al7"]
+
+[node name="ChoiceButton" type="HBoxContainer" node_paths=PackedStringArray("button", "arrow_label")]
+custom_minimum_size = Vector2(200, 0)
+size_flags_horizontal = 4
+script = ExtResource("1_t1al7")
+button_text = "Play"
+button = NodePath("Button")
+arrow_label = NodePath("ArrowLabel")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play"
+alignment = 0
+
+[node name="ArrowLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "<"
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="Button" to="." method="_on_button_focus_exited"]

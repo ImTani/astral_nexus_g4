@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2tj8h46e7ax4"]
+
+[ext_resource type="Script" uid="uid://bwvnrbirs80v6" path="res://core/ui/rewards_display.gd" id="1_y2ymm"]
+[ext_resource type="PackedScene" uid="uid://dm4ja1atyswry" path="res://core/ui/choice_button.tscn" id="2_b8spl"]
+
+[node name="RewardsDisplay" type="Control" node_paths=PackedStringArray("xp_label", "currency_label", "choice_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2ymm")
+xp_label = NodePath("VBoxContainer/XPLabel")
+currency_label = NodePath("VBoxContainer/CurrencyLabel")
+choice_button = NodePath("VBoxContainer/ChoiceButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="XPLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="CurrencyLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="ChoiceButton" parent="VBoxContainer" instance=ExtResource("2_b8spl")]
+layout_mode = 2
+size_flags_horizontal = 1
+button_text = "Continue"
