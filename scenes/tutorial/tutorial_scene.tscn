@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3qoc5ffdku5s"]
+
+[ext_resource type="Theme" uid="uid://pq8rfhk44bpk" path="res://resources/terminal_theme.tres" id="1_p748k"]
+[ext_resource type="Script" uid="uid://c7kisgsxogo68" path="res://scenes/tutorial/character_creation.gd" id="2_char"]
+[ext_resource type="Script" uid="uid://cywpl4laxfy41" path="res://scenes/tutorial/tutorial_manager.gd" id="3_tut"]
+[ext_resource type="Script" uid="uid://befnc1f00txu1" path="res://scenes/tutorial/story_display.gd" id="4_story"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p748k")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StoryDisplay" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Welcome to Astral Nexus"
+script = ExtResource("4_story")
+
+[node name="CharacterCreation" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_char")
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InfoPanel" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/InfoPanel"]
+layout_mode = 2
+
+[node name="PlayerInfo" type="Label" parent="MarginContainer/InfoPanel/VBoxContainer"]
+layout_mode = 2
+text = "Character Creation"
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("3_tut")

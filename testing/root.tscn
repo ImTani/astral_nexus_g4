@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn8aoqvoqdxww"]
+
+[ext_resource type="Script" uid="uid://dyr307tb1brf6" path="res://core/globals/metamask_connection.gd" id="1_jbbia"]
+[ext_resource type="Script" uid="uid://b01gdifh1m0vn" path="res://testing/wallet_button.gd" id="2_csiwp"]
+[ext_resource type="Script" uid="uid://3bybagtquf2n" path="res://testing/redeem_button.gd" id="3_6sox1"]
+
+[node name="Root" type="Node2D"]
+
+[node name="MetaMaskConnector" type="Node" parent="."]
+script = ExtResource("1_jbbia")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+
+[node name="ConnectButton" type="Button" parent="UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect Wallet"
+script = ExtResource("2_csiwp")
+
+[node name="RedeemCurrency" type="HBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Amount" type="LineEdit" parent="UI/CenterContainer/VBoxContainer/RedeemCurrency"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter amount"
+expand_to_text_length = true
+
+[node name="RedeemButton" type="Button" parent="UI/CenterContainer/VBoxContainer/RedeemCurrency" node_paths=PackedStringArray("wallet_interface", "amount_line_edit")]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Redeem"
+script = ExtResource("3_6sox1")
+wallet_interface = NodePath("../../../../../MetaMaskConnector")
+amount_line_edit = NodePath("../Amount")
+
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/ConnectButton" to="UI/CenterContainer/VBoxContainer/ConnectButton" method="_on_connect_button_pressed"]
+[connection signal="text_changed" from="UI/CenterContainer/VBoxContainer/RedeemCurrency/Amount" to="UI/CenterContainer/VBoxContainer/RedeemCurrency/RedeemButton" method="_on_amount_text_changed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/RedeemCurrency/RedeemButton" to="UI/CenterContainer/VBoxContainer/RedeemCurrency/RedeemButton" method="_on_pressed"]

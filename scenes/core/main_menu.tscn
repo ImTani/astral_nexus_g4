@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkovysfy2ff4j"]
+
+[ext_resource type="Shader" uid="uid://chock7610613k" path="res://resources/shaders/iridescent.gdshader" id="1_fovxk"]
+[ext_resource type="Script" uid="uid://d0jl0lhex6t43" path="res://scenes/core/button_holder.gd" id="2_xfaqd"]
+[ext_resource type="Script" uid="uid://najopdgj0us7" path="res://core/ui/choice_button.gd" id="3_bfmur"]
+[ext_resource type="Script" uid="uid://xd6whyf0bqpm" path="res://scenes/core/play_button.gd" id="4_3th34"]
+[ext_resource type="Script" uid="uid://b01gdifh1m0vn" path="res://testing/wallet_button.gd" id="4_rt0c4"]
+[ext_resource type="Script" uid="uid://du66yrc5tpp26" path="res://scenes/core/wallet_info.gd" id="5_0v6p5"]
+[ext_resource type="Script" uid="uid://dyr307tb1brf6" path="res://core/globals/metamask_connection.gd" id="7_hgjef"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dpjr"]
+shader = ExtResource("1_fovxk")
+shader_parameter/strength = 0.34
+shader_parameter/speed = 0.365
+shader_parameter/angle = 0.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="LogoContainer" type="CenterContainer" parent="LogoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Logo" type="Label" parent="LogoContainer/LogoContainer"]
+material = SubResource("ShaderMaterial_4dpjr")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "   _       _             _       __                    
+  /_\\  ___| |_ _ __ __ _| |   /\\ \\ \\_____  ___   _ ___ 
+ //_\\\\/ __| __| '__/ _` | |  /  \\/ / _ \\ \\/ / | | / __|
+/  _  \\__ \\ |_| | | (_| | | / /\\  /  __/>  <| |_| \\__ \\
+\\_/ \\_/___/\\__|_|  \\__,_|_| \\_\\ \\/ \\___/_/\\_\\\\__,_|___/"
+
+[node name="ControlsContainer" type="CenterContainer" parent="LogoContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ButtonHolder" type="VBoxContainer" parent="LogoContainer/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+script = ExtResource("2_xfaqd")
+
+[node name="ChoiceButton" type="HBoxContainer" parent="LogoContainer/ControlsContainer/ButtonHolder" node_paths=PackedStringArray("button", "arrow_label")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("3_bfmur")
+button_text = "Play"
+button = NodePath("Button")
+arrow_label = NodePath("ArrowLabel")
+
+[node name="Button" type="Button" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play"
+alignment = 0
+script = ExtResource("4_3th34")
+
+[node name="ArrowLabel" type="Label" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "<"
+
+[node name="ChoiceButton2" type="HBoxContainer" parent="LogoContainer/ControlsContainer/ButtonHolder" node_paths=PackedStringArray("button", "arrow_label")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("3_bfmur")
+button_text = "Connect Wallet"
+button = NodePath("Button")
+arrow_label = NodePath("ArrowLabel")
+
+[node name="Button" type="Button" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Connect Wallet"
+alignment = 0
+script = ExtResource("4_rt0c4")
+
+[node name="ArrowLabel" type="Label" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "<"
+
+[node name="ChoiceButton3" type="HBoxContainer" parent="LogoContainer/ControlsContainer/ButtonHolder" node_paths=PackedStringArray("button", "arrow_label")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("3_bfmur")
+button_text = "Credits"
+button = NodePath("Button")
+arrow_label = NodePath("ArrowLabel")
+
+[node name="Button" type="Button" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Credits"
+alignment = 0
+
+[node name="ArrowLabel" type="Label" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "<"
+
+[node name="ChoiceButton4" type="HBoxContainer" parent="LogoContainer/ControlsContainer/ButtonHolder" node_paths=PackedStringArray("button", "arrow_label")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("3_bfmur")
+button_text = "Options"
+button = NodePath("Button")
+arrow_label = NodePath("ArrowLabel")
+
+[node name="Button" type="Button" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Credits"
+alignment = 0
+
+[node name="ArrowLabel" type="Label" parent="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "<"
+
+[node name="BottomRightInfo" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="GameInfo" type="Label" parent="BottomRightInfo"]
+layout_mode = 2
+text = "v0.0.1"
+horizontal_alignment = 2
+
+[node name="WalletInfo" type="Label" parent="BottomRightInfo"]
+layout_mode = 2
+text = "Wallet Not Connected"
+horizontal_alignment = 2
+script = ExtResource("5_0v6p5")
+
+[node name="MetaMaskConnector" type="Node" parent="."]
+script = ExtResource("7_hgjef")
+
+[connection signal="focus_entered" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton" method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton" method="_on_button_focus_exited"]
+[connection signal="pressed" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton/Button" method="_on_pressed"]
+[connection signal="focus_entered" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2" method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2" method="_on_button_focus_exited"]
+[connection signal="pressed" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton2/Button" method="_on_pressed"]
+[connection signal="focus_entered" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3" method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton3" method="_on_button_focus_exited"]
+[connection signal="focus_entered" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4" method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4/Button" to="LogoContainer/ControlsContainer/ButtonHolder/ChoiceButton4" method="_on_button_focus_exited"]

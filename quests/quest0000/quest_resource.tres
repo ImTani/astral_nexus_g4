@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://bjrey2pfxcgcp"]
+
+[ext_resource type="Script" uid="uid://jddarexdkghc" path="res://core/framework/quest.gd" id="1_3c3gk"]
+[ext_resource type="Script" uid="uid://coo0i2s1opwch" path="res://core/framework/rewards.gd" id="1_l5r5v"]
+
+[resource]
+script = ExtResource("1_3c3gk")
+json_path = "res://quests/quest0000/quest_progression.json"
+rewards = Array[ExtResource("1_l5r5v")]([])

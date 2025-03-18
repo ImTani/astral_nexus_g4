@@ -1,0 +1,288 @@
+{
+  "quest_id": "Q000",
+  "title": "Origin Story: A New Dawn",
+  "description": "Begin your journey in the humble village of Greenhaven, where your past shapes your destiny.",
+
+  "metadata": {
+	"recommended_level": 1,
+	"hard_coded": true
+  },
+
+  "stages": {
+	"prologue": {
+	  "narration": "A gentle breeze stirs the morning mist as you awaken from a strange dream. In the dream, a distant voice called your name, beckoning you to embark on a grand adventure. Now, you find yourself in a small, cozy dwelling, uncertain but filled with purpose.",
+	  "choices": [
+		{
+		  "option_text": "Rise from bed and gather your thoughts (Begin).",
+		  "next_stage": "char_creation_name"
+		},
+		{
+		  "option_text": "Return to sleep (Abort quest).",
+		  "next_stage": "quest_abort"
+		}
+	  ]
+	},
+
+	"char_creation_name": {
+	  "narration": "You recall the dream voice whispering, \"What shall we call you?\" The memory of that moment lingers, waiting for your response.",
+	  "text_input_prompt": "Type your character's name:",
+	  "choices": [
+		{
+		  "option_text": "Confirm your name",
+		  "next_stage": "char_creation_background",
+		  "flags_triggered": {
+			"set_player_name_from_input": true
+		  }
+		}
+	  ]
+	},
+
+	"char_creation_background": {
+	  "narration": "As the dawn light spills into the room, you reflect on your past. Were you raised among scholars? Did you spend your youth honing martial skills? Or did your cunning and stealth define you? Perhaps your story is entirely different?",
+	  "text_input_prompt": "Briefly describe your background or origin:",
+	  "choices": [
+		{
+		  "option_text": "Confirm your background",
+		  "next_stage": "char_creation_class_selection",
+		  "flags_triggered": {
+			"set_player_background_from_input": true
+		  }
+		}
+	  ]
+	},
+
+	"char_creation_class_selection": {
+	  "narration": "A knock at your door startles you. A voice calls out, \"@player_name@? Elder Rowan wants a word, but first, do you have any particular skills or training?\"",
+	  "choices": [
+		{
+		  "option_text": "Declare yourself a Warrior (strength & bravery).",
+		  "next_stage": "awakening",
+		  "flags_triggered": {
+			"class": "warrior"
+		  }
+		},
+		{
+		  "option_text": "Declare yourself a Mage (arcane knowledge).",
+		  "next_stage": "awakening",
+		  "flags_triggered": {
+			"class": "mage"
+		  }
+		},
+		{
+		  "option_text": "Declare yourself a Rogue (stealth & agility).",
+		  "next_stage": "awakening",
+		  "flags_triggered": {
+			"class": "rogue"
+		  }
+		},
+		{
+		  "option_text": "Declare yourself a Scholar (wisdom & lore).",
+		  "next_stage": "awakening",
+		  "flags_triggered": {
+			"class": "scholar"
+		  }
+		}
+	  ]
+	},
+
+	"awakening": {
+	  "narration": "You gather your meager belongings. Outside, the sun illuminates the village of Greenhaven. A few villagers wave in passing, but the atmosphere is unusually tense. In the distance, the central hall beckons—Elder Rowan is waiting.",
+	  "choices": [
+		{
+		  "option_text": "Step outside and greet the new day.",
+		  "next_stage": "village_introduction"
+		},
+		{
+		  "option_text": "Check your trunk first (Inventory Tutorial).",
+		  "next_stage": "inventory_tutorial"
+		}
+	  ]
+	},
+
+	"inventory_tutorial": {
+	  "narration": "You open the trunk at the foot of your bed. Inside are a few essentials: a worn outfit suited to your background, a small pouch of rations, and a keepsake from your childhood.",
+	  "reward_items": ["basic_outfit", "dried_rations", "childhood_keepsake"],
+	  "choices": [
+		{
+		  "option_text": "Close the trunk and head out.",
+		  "next_stage": "village_introduction"
+		}
+	  ]
+	},
+
+	"village_introduction": {
+	  "narration": "Greenhaven bustles in the morning sun. Merchants set up their stalls, children chase one another, and a distant blacksmith’s hammer rings out. Near the village notice board stands Elder Rowan, scanning for something—or someone.",
+	  "choices": [
+		{
+		  "option_text": "Approach Elder Rowan.",
+		  "next_stage": "elder_encounter"
+		},
+		{
+		  "option_text": "Explore the village on your own for a moment.",
+		  "next_stage": "village_exploration"
+		}
+	  ]
+	},
+
+	"village_exploration": {
+	  "narration": "You stroll through Greenhaven. Despite its peaceful appearance, you sense unease in the villagers’ eyes. Rumors of strange creatures or events flit from person to person. Eventually, your curiosity pulls you back to the notice board.",
+	  "choices": [
+		{
+		  "option_text": "Speak to Elder Rowan now.",
+		  "next_stage": "elder_encounter"
+		},
+		{
+		  "option_text": "Leave the village for now (Abort the quest).",
+		  "next_stage": "quest_abort"
+		}
+	  ]
+	},
+
+	"elder_encounter": {
+	  "narration": "Elder Rowan glances at you with relief. \"@player_name@, just the person I need. Creatures have been sighted near our old well in the forest. We need someone brave (or curious) enough to investigate. Will you help us?\"",
+	  "choices": [
+		{
+		  "option_text": "Agree to help (alignment: +5 towards Good).",
+		  "next_stage": "forest_approach",
+		  "flags_triggered": {
+			"alignment_change": 5,
+			"faction_reputation": {
+			  "greenhaven_village": 10
+			}
+		  }
+		},
+		{
+		  "option_text": "Question the danger (neutral alignment).",
+		  "next_stage": "elder_questioning"
+		},
+		{
+		  "option_text": "Refuse politely (abort quest).",
+		  "next_stage": "refusal_path"
+		}
+	  ]
+	},
+
+	"elder_questioning": {
+	  "narration": "Elder Rowan’s expression darkens. \"I wish I were exaggerating. The forest grows restless. If you can help, we’ll be in your debt.\"",
+	  "choices": [
+		{
+		  "option_text": "Reluctantly agree to help.",
+		  "next_stage": "forest_approach"
+		},
+		{
+		  "option_text": "No, I can’t risk this right now.",
+		  "next_stage": "quest_abort"
+		}
+	  ]
+	},
+
+	"refusal_path": {
+	  "narration": "Elder Rowan sighs but respects your decision. \"Greenhaven will manage, somehow. Return if you change your mind.\"",
+	  "choices": [
+		{
+		  "option_text": "Actually, I'll help.",
+		  "next_stage": "forest_approach"
+		},
+		{
+		  "option_text": "Leave (Abort the quest).",
+		  "next_stage": "quest_abort"
+		}
+	  ]
+	},
+
+	"forest_approach": {
+	  "narration": "Following a winding path into the forest, you sense an unnerving stillness. The ancient well is just ahead, moss and vines creeping over crumbling stones. Then, you hear a rasping chitter—something is here.",
+	  "choices": [
+		{
+		  "option_text": "Investigate the well quietly.",
+		  "next_stage": "combat_tutorial"
+		},
+		{
+		  "option_text": "Call out to see if anyone’s around.",
+		  "next_stage": "mysterious_figure"
+		}
+	  ]
+	},
+
+	"mysterious_figure": {
+	  "narration": "A hooded figure emerges from the gloom, whispering, \"You shouldn’t be here.\" The figure’s presence distracts you just enough for an eerie chitter behind you. Danger is near!",
+	  "flags_triggered": {
+		"faction_reputation": {
+		  "mysterious_order": 5
+		}
+	  },
+	  "choices": [
+		{
+		  "option_text": "Turn to face the threat!",
+		  "next_stage": "combat_tutorial"
+		},
+		{
+		  "option_text": "Attempt to flee!",
+		  "next_stage": "flee_attempt"
+		}
+	  ]
+	},
+
+	"flee_attempt": {
+	  "narration": "Panicked, you run, only to find the creature blocks your escape! No choice remains but to fight!",
+	  "choices": [
+		{
+		  "option_text": "Prepare for battle.",
+		  "next_stage": "combat_tutorial"
+		}
+	  ]
+	},
+
+	"combat_tutorial": {
+	  "narration": "A vicious forest crawler scuttles into view. Its legs scrape the stones, mandibles clacking. Time to put your training—or quick thinking—to the test!",
+	  "combat_encounter": "forest_crawler_lv1",
+	  "choices": [
+		{
+		  "option_text": "Fight!",
+		  "next_stage": "post_forest"
+		}
+	  ]
+	},
+
+	"post_forest": {
+	  "narration": "You stand victorious, heart pounding. The creature lies still. The forest remains eerily quiet, but you've proven yourself capable. Time to report back.",
+	  "reward_exp": 50,
+	  "reward_currency": 20,
+	  "choices": [
+		{
+		  "option_text": "Return to Greenhaven",
+		  "next_stage": "final_moment"
+		}
+	  ]
+	},
+
+	"final_moment": {
+	  "narration": "Back in Greenhaven, Elder Rowan greets you anxiously. \"@player_name@, what happened out there?\" You share the tale of the forest crawler (and anything else you encountered). A new chapter in your life has begun.",
+	  "choices": [
+		{
+		  "option_text": "Pledge to protect Greenhaven",
+		  "next_stage": "quest_complete"
+		},
+		{
+		  "option_text": "Express doubt and desire to wander",
+		  "next_stage": "quest_alternative_complete"
+		}
+	  ]
+	},
+
+	"quest_alternative_complete": {
+	  "narration": "Though unsure you want to stay in Greenhaven, you’ve proven your skill. Elder Rowan respects your choice: \"Wherever you go, know you have a place here.\" Your origin story ends on an uncertain note, but the call of destiny grows louder.",
+	  "end_quest": true
+	},
+
+	"quest_complete": {
+	  "narration": "The village breathes a sigh of relief. Your name is spoken in grateful whispers among townsfolk. This is only the beginning—Greenhaven stands with you, and the wider world awaits.",
+	  "end_quest": true
+	},
+
+	"quest_abort": {
+	  "narration": "You decide this life may not be for you—at least not yet. Perhaps you’ll find the resolve to return later.",
+	  "end_quest": true
+	}
+  }
+}
